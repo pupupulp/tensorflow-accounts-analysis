@@ -450,6 +450,7 @@ node {
         type: DT_INT64
         type: DT_DOUBLE
         type: DT_INT64
+        type: DT_INT64
         type: DT_DOUBLE
       }
     }
@@ -482,6 +483,8 @@ node {
     key: "shapes"
     value {
       list {
+        shape {
+        }
         shape {
         }
         shape {
@@ -604,6 +607,35 @@ node {
   attr {
     key: "dtype"
     value {
+      type: DT_INT64
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        unknown_rank: true
+      }
+    }
+  }
+}
+node {
+  name: "enqueue_input/Placeholder_4"
+  op: "Placeholder"
+  device: "/device:CPU:0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          unknown_rank: true
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
       type: DT_DOUBLE
     }
   }
@@ -624,6 +656,7 @@ node {
   input: "enqueue_input/Placeholder_1"
   input: "enqueue_input/Placeholder_2"
   input: "enqueue_input/Placeholder_3"
+  input: "enqueue_input/Placeholder_4"
   device: "/device:CPU:0"
   attr {
     key: "Tcomponents"
@@ -631,6 +664,7 @@ node {
       list {
         type: DT_INT64
         type: DT_DOUBLE
+        type: DT_INT64
         type: DT_INT64
         type: DT_DOUBLE
       }
@@ -982,6 +1016,11 @@ node {
             size: -1
           }
         }
+        shape {
+          dim {
+            size: -1
+          }
+        }
       }
     }
   }
@@ -991,6 +1030,7 @@ node {
       list {
         type: DT_INT64
         type: DT_DOUBLE
+        type: DT_INT64
         type: DT_INT64
         type: DT_DOUBLE
       }
@@ -1004,13 +1044,13 @@ node {
   }
 }
 node {
-  name: "linear/linear_model/BUSINESS_YEAR/weights/part_0/Initializer/zeros"
+  name: "linear/linear_model/business_month/weights/part_0/Initializer/zeros"
   op: "Const"
   attr {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/linear_model/BUSINESS_YEAR/weights/part_0"
+        s: "loc:@linear/linear_model/business_month/weights/part_0"
       }
     }
   }
@@ -1054,13 +1094,13 @@ node {
   }
 }
 node {
-  name: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  name: "linear/linear_model/business_month/weights/part_0"
   op: "VarHandleOp"
   attr {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/linear_model/BUSINESS_YEAR/weights/part_0"
+        s: "loc:@linear/linear_model/business_month/weights/part_0"
       }
     }
   }
@@ -1101,14 +1141,14 @@ node {
   attr {
     key: "shared_name"
     value {
-      s: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+      s: "linear/linear_model/business_month/weights/part_0"
     }
   }
 }
 node {
-  name: "linear/linear_model/BUSINESS_YEAR/weights/part_0/IsInitialized/VarIsInitializedOp"
+  name: "linear/linear_model/business_month/weights/part_0/IsInitialized/VarIsInitializedOp"
   op: "VarIsInitializedOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -1120,15 +1160,15 @@ node {
   }
 }
 node {
-  name: "linear/linear_model/BUSINESS_YEAR/weights/part_0/Assign"
+  name: "linear/linear_model/business_month/weights/part_0/Assign"
   op: "AssignVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0/Initializer/zeros"
+  input: "linear/linear_model/business_month/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0/Initializer/zeros"
   attr {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/linear_model/BUSINESS_YEAR/weights/part_0"
+        s: "loc:@linear/linear_model/business_month/weights/part_0"
       }
     }
   }
@@ -1140,14 +1180,14 @@ node {
   }
 }
 node {
-  name: "linear/linear_model/BUSINESS_YEAR/weights/part_0/Read/ReadVariableOp"
+  name: "linear/linear_model/business_month/weights/part_0/Read/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/linear_model/BUSINESS_YEAR/weights/part_0"
+        s: "loc:@linear/linear_model/business_month/weights/part_0"
       }
     }
   }
@@ -1174,7 +1214,7 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/ExpandDims/dim"
+  name: "linear/linear_model_1/linear_model/business_month/ExpandDims/dim"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -1204,10 +1244,10 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/ExpandDims"
+  name: "linear/linear_model_1/linear_model/business_month/ExpandDims"
   op: "ExpandDims"
   input: "random_shuffle_queue_DequeueUpTo:2"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/ExpandDims/dim"
+  input: "linear/linear_model_1/linear_model/business_month/ExpandDims/dim"
   attr {
     key: "T"
     value {
@@ -1237,9 +1277,9 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/ToFloat"
+  name: "linear/linear_model_1/linear_model/business_month/ToFloat"
   op: "Cast"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/ExpandDims"
+  input: "linear/linear_model_1/linear_model/business_month/ExpandDims"
   attr {
     key: "DstT"
     value {
@@ -1269,9 +1309,9 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Shape"
+  name: "linear/linear_model_1/linear_model/business_month/Shape"
   op: "Shape"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/ToFloat"
+  input: "linear/linear_model_1/linear_model/business_month/ToFloat"
   attr {
     key: "T"
     value {
@@ -1298,7 +1338,7 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/strided_slice/stack"
+  name: "linear/linear_model_1/linear_model/business_month/strided_slice/stack"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -1334,7 +1374,7 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/strided_slice/stack_1"
+  name: "linear/linear_model_1/linear_model/business_month/strided_slice/stack_1"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -1370,7 +1410,7 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/strided_slice/stack_2"
+  name: "linear/linear_model_1/linear_model/business_month/strided_slice/stack_2"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -1406,12 +1446,12 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/strided_slice"
+  name: "linear/linear_model_1/linear_model/business_month/strided_slice"
   op: "StridedSlice"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Shape"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/strided_slice/stack"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/strided_slice/stack_1"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/strided_slice/stack_2"
+  input: "linear/linear_model_1/linear_model/business_month/Shape"
+  input: "linear/linear_model_1/linear_model/business_month/strided_slice/stack"
+  input: "linear/linear_model_1/linear_model/business_month/strided_slice/stack_1"
+  input: "linear/linear_model_1/linear_model/business_month/strided_slice/stack_2"
   attr {
     key: "Index"
     value {
@@ -1465,7 +1505,7 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Reshape/shape/1"
+  name: "linear/linear_model_1/linear_model/business_month/Reshape/shape/1"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -1495,10 +1535,10 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Reshape/shape"
+  name: "linear/linear_model_1/linear_model/business_month/Reshape/shape"
   op: "Pack"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/strided_slice"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Reshape/shape/1"
+  input: "linear/linear_model_1/linear_model/business_month/strided_slice"
+  input: "linear/linear_model_1/linear_model/business_month/Reshape/shape/1"
   attr {
     key: "N"
     value {
@@ -1531,10 +1571,10 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Reshape"
+  name: "linear/linear_model_1/linear_model/business_month/Reshape"
   op: "Reshape"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/ToFloat"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Reshape/shape"
+  input: "linear/linear_model_1/linear_model/business_month/ToFloat"
+  input: "linear/linear_model_1/linear_model/business_month/Reshape/shape"
   attr {
     key: "T"
     value {
@@ -1564,9 +1604,9 @@ node {
   }
 }
 node {
-  name: "linear/linear_model/BUSINESS_YEAR/weights/ReadVariableOp"
+  name: "linear/linear_model/business_month/weights/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -1590,9 +1630,9 @@ node {
   }
 }
 node {
-  name: "linear/linear_model/BUSINESS_YEAR/weights"
+  name: "linear/linear_model/business_month/weights"
   op: "Identity"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/ReadVariableOp"
+  input: "linear/linear_model/business_month/weights/ReadVariableOp"
   attr {
     key: "T"
     value {
@@ -1616,10 +1656,661 @@ node {
   }
 }
 node {
-  name: "linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum"
+  name: "linear/linear_model_1/linear_model/business_month/weighted_sum"
   op: "MatMul"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Reshape"
-  input: "linear/linear_model/BUSINESS_YEAR/weights"
+  input: "linear/linear_model_1/linear_model/business_month/Reshape"
+  input: "linear/linear_model/business_month/weights"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "linear/linear_model/business_year/weights/part_0/Initializer/zeros"
+  op: "Const"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/linear_model/business_year/weights/part_0"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+        float_val: 0.0
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model/business_year/weights/part_0"
+  op: "VarHandleOp"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/linear_model/business_year/weights/part_0"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 1
+        }
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: "linear/linear_model/business_year/weights/part_0"
+    }
+  }
+}
+node {
+  name: "linear/linear_model/business_year/weights/part_0/IsInitialized/VarIsInitializedOp"
+  op: "VarIsInitializedOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model/business_year/weights/part_0/Assign"
+  op: "AssignVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  input: "linear/linear_model/business_year/weights/part_0/Initializer/zeros"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/linear_model/business_year/weights/part_0"
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/linear_model/business_year/weights/part_0/Read/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/linear_model/business_year/weights/part_0"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/ExpandDims/dim"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: -1
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/ExpandDims"
+  op: "ExpandDims"
+  input: "random_shuffle_queue_DequeueUpTo:3"
+  input: "linear/linear_model_1/linear_model/business_year/ExpandDims/dim"
+  attr {
+    key: "T"
+    value {
+      type: DT_INT64
+    }
+  }
+  attr {
+    key: "Tdim"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/ToFloat"
+  op: "Cast"
+  input: "linear/linear_model_1/linear_model/business_year/ExpandDims"
+  attr {
+    key: "DstT"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "SrcT"
+    value {
+      type: DT_INT64
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/Shape"
+  op: "Shape"
+  input: "linear/linear_model_1/linear_model/business_year/ToFloat"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 2
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "out_type"
+    value {
+      type: DT_INT32
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/strided_slice/stack"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 1
+          }
+        }
+        int_val: 0
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/strided_slice/stack_1"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 1
+          }
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/strided_slice/stack_2"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 1
+          }
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/strided_slice"
+  op: "StridedSlice"
+  input: "linear/linear_model_1/linear_model/business_year/Shape"
+  input: "linear/linear_model_1/linear_model/business_year/strided_slice/stack"
+  input: "linear/linear_model_1/linear_model/business_year/strided_slice/stack_1"
+  input: "linear/linear_model_1/linear_model/business_year/strided_slice/stack_2"
+  attr {
+    key: "Index"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "begin_mask"
+    value {
+      i: 0
+    }
+  }
+  attr {
+    key: "ellipsis_mask"
+    value {
+      i: 0
+    }
+  }
+  attr {
+    key: "end_mask"
+    value {
+      i: 0
+    }
+  }
+  attr {
+    key: "new_axis_mask"
+    value {
+      i: 0
+    }
+  }
+  attr {
+    key: "shrink_axis_mask"
+    value {
+      i: 1
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/Reshape/shape/1"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+        }
+        int_val: 1
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/Reshape/shape"
+  op: "Pack"
+  input: "linear/linear_model_1/linear_model/business_year/strided_slice"
+  input: "linear/linear_model_1/linear_model/business_year/Reshape/shape/1"
+  attr {
+    key: "N"
+    value {
+      i: 2
+    }
+  }
+  attr {
+    key: "T"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 2
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "axis"
+    value {
+      i: 0
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/Reshape"
+  op: "Reshape"
+  input: "linear/linear_model_1/linear_model/business_year/ToFloat"
+  input: "linear/linear_model_1/linear_model/business_year/Reshape/shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "Tshape"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model/business_year/weights/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/linear_model/business_year/weights"
+  op: "Identity"
+  input: "linear/linear_model/business_year/weights/ReadVariableOp"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear_model_1/linear_model/business_year/weighted_sum"
+  op: "MatMul"
+  input: "linear/linear_model_1/linear_model/business_year/Reshape"
+  input: "linear/linear_model/business_year/weights"
   attr {
     key: "T"
     value {
@@ -1656,8 +2347,15 @@ node {
 }
 node {
   name: "linear/linear_model_1/linear_model/weighted_sum_no_bias"
-  op: "Identity"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum"
+  op: "AddN"
+  input: "linear/linear_model_1/linear_model/business_month/weighted_sum"
+  input: "linear/linear_model_1/linear_model/business_year/weighted_sum"
+  attr {
+    key: "N"
+    value {
+      i: 2
+    }
+  }
   attr {
     key: "T"
     value {
@@ -2161,7 +2859,7 @@ node {
 node {
   name: "linear/Reshape/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -2251,7 +2949,99 @@ node {
   }
 }
 node {
-  name: "linear/concat/concat_dim"
+  name: "linear/Reshape_1/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/Reshape_1/shape"
+  op: "Const"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_INT32
+        tensor_shape {
+          dim {
+            size: 1
+          }
+        }
+        int_val: -1
+      }
+    }
+  }
+}
+node {
+  name: "linear/Reshape_1"
+  op: "Reshape"
+  input: "linear/Reshape_1/ReadVariableOp"
+  input: "linear/Reshape_1/shape"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "Tshape"
+    value {
+      type: DT_INT32
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/concat/axis"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -2282,12 +3072,26 @@ node {
 }
 node {
   name: "linear/concat"
-  op: "Identity"
+  op: "ConcatV2"
   input: "linear/Reshape"
+  input: "linear/Reshape_1"
+  input: "linear/concat/axis"
+  attr {
+    key: "N"
+    value {
+      i: 2
+    }
+  }
   attr {
     key: "T"
     value {
       type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "Tidx"
+    value {
+      type: DT_INT32
     }
   }
   attr {
@@ -2296,7 +3100,7 @@ node {
       list {
         shape {
           dim {
-            size: 1
+            size: 2
           }
         }
       }
@@ -2350,7 +3154,7 @@ node {
       list {
         shape {
           dim {
-            size: 1
+            size: 2
           }
         }
       }
@@ -2379,7 +3183,7 @@ node {
       list {
         shape {
           dim {
-            size: 1
+            size: 2
           }
         }
       }
@@ -2606,7 +3410,7 @@ node {
 node {
   name: "linear/head/labels/ExpandDims"
   op: "ExpandDims"
-  input: "random_shuffle_queue_DequeueUpTo:3"
+  input: "random_shuffle_queue_DequeueUpTo:4"
   input: "linear/head/labels/ExpandDims/dim"
   attr {
     key: "T"
@@ -5308,94 +6112,15 @@ node {
   }
 }
 node {
-  name: "linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/MatMul"
-  op: "MatMul"
-  input: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_grad/tuple/control_dependency"
-  input: "linear/linear_model/BUSINESS_YEAR/weights"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: -1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "transpose_a"
-    value {
-      b: false
-    }
-  }
-  attr {
-    key: "transpose_b"
-    value {
-      b: true
-    }
-  }
-}
-node {
-  name: "linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/MatMul_1"
-  op: "MatMul"
-  input: "linear/linear_model_1/linear_model/BUSINESS_YEAR/Reshape"
-  input: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_grad/tuple/control_dependency"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "transpose_a"
-    value {
-      b: true
-    }
-  }
-  attr {
-    key: "transpose_b"
-    value {
-      b: false
-    }
-  }
-}
-node {
-  name: "linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/tuple/group_deps"
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/group_deps"
   op: "NoOp"
-  input: "^linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/MatMul"
-  input: "^linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/MatMul_1"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_grad/tuple/control_dependency"
 }
 node {
-  name: "linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/tuple/control_dependency"
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/control_dependency"
   op: "Identity"
-  input: "linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/MatMul"
-  input: "^linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/tuple/group_deps"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_grad/tuple/control_dependency"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/group_deps"
   attr {
     key: "T"
     value {
@@ -5406,7 +6131,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/MatMul"
+        s: "loc:@linear/head/gradients/linear/head/mean_squared_error/SquaredDifference_grad/Reshape"
       }
     }
   }
@@ -5427,10 +6152,10 @@ node {
   }
 }
 node {
-  name: "linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/tuple/control_dependency_1"
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/control_dependency_1"
   op: "Identity"
-  input: "linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/MatMul_1"
-  input: "^linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/tuple/group_deps"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_grad/tuple/control_dependency"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/group_deps"
   attr {
     key: "T"
     value {
@@ -5441,7 +6166,315 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/MatMul_1"
+        s: "loc:@linear/head/gradients/linear/head/mean_squared_error/SquaredDifference_grad/Reshape"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/MatMul"
+  op: "MatMul"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/control_dependency"
+  input: "linear/linear_model/business_month/weights"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/MatMul_1"
+  op: "MatMul"
+  input: "linear/linear_model_1/linear_model/business_month/Reshape"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/control_dependency"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/tuple/group_deps"
+  op: "NoOp"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/MatMul"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/MatMul_1"
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/tuple/control_dependency"
+  op: "Identity"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/MatMul"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/tuple/group_deps"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/MatMul"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/tuple/control_dependency_1"
+  op: "Identity"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/MatMul_1"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/tuple/group_deps"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/MatMul_1"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/MatMul"
+  op: "MatMul"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/control_dependency_1"
+  input: "linear/linear_model/business_year/weights"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: false
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: true
+    }
+  }
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/MatMul_1"
+  op: "MatMul"
+  input: "linear/linear_model_1/linear_model/business_year/Reshape"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/weighted_sum_no_bias_grad/tuple/control_dependency_1"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "transpose_a"
+    value {
+      b: true
+    }
+  }
+  attr {
+    key: "transpose_b"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/tuple/group_deps"
+  op: "NoOp"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/MatMul"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/MatMul_1"
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/tuple/control_dependency"
+  op: "Identity"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/MatMul"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/tuple/group_deps"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/MatMul"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: -1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/tuple/control_dependency_1"
+  op: "Identity"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/MatMul_1"
+  input: "^linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/tuple/group_deps"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/MatMul_1"
       }
     }
   }
@@ -5464,7 +6497,7 @@ node {
 node {
   name: "linear/head/Read/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -5564,9 +6597,9 @@ node {
   }
 }
 node {
-  name: "linear/head/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl/Read/ReadVariableOp"
+  name: "linear/head/linear/linear_model/business_month/weights/part_0/Ftrl/Read/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_class"
     value {
@@ -5598,9 +6631,9 @@ node {
   }
 }
 node {
-  name: "linear/head/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl/Identity"
+  name: "linear/head/linear/linear_model/business_month/weights/part_0/Ftrl/Identity"
   op: "Identity"
-  input: "linear/head/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl/Read/ReadVariableOp"
+  input: "linear/head/linear/linear_model/business_month/weights/part_0/Ftrl/Read/ReadVariableOp"
   attr {
     key: "T"
     value {
@@ -5632,7 +6665,7 @@ node {
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
   op: "VarHandleOp"
   attr {
     key: "_class"
@@ -5679,14 +6712,14 @@ node {
   attr {
     key: "shared_name"
     value {
-      s: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
+      s: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
     }
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl/IsInitialized/VarIsInitializedOp"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl/IsInitialized/VarIsInitializedOp"
   op: "VarIsInitializedOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
   attr {
     key: "_class"
     value {
@@ -5706,9 +6739,9 @@ node {
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl/Assign"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl/Assign"
   op: "AssignVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
   input: "linear/head/Const"
   attr {
     key: "_class"
@@ -5726,9 +6759,9 @@ node {
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl/Read/ReadVariableOp"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl/Read/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
   attr {
     key: "_class"
     value {
@@ -5760,9 +6793,9 @@ node {
   }
 }
 node {
-  name: "linear/head/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/Read/ReadVariableOp"
+  name: "linear/head/linear/linear_model/business_month/weights/part_0/Ftrl_1/Read/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_class"
     value {
@@ -5794,9 +6827,9 @@ node {
   }
 }
 node {
-  name: "linear/head/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/Identity"
+  name: "linear/head/linear/linear_model/business_month/weights/part_0/Ftrl_1/Identity"
   op: "Identity"
-  input: "linear/head/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/Read/ReadVariableOp"
+  input: "linear/head/linear/linear_model/business_month/weights/part_0/Ftrl_1/Read/ReadVariableOp"
   attr {
     key: "T"
     value {
@@ -5828,7 +6861,7 @@ node {
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/Initializer/zeros"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1/Initializer/zeros"
   op: "Const"
   attr {
     key: "_class"
@@ -5878,7 +6911,7 @@ node {
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
   op: "VarHandleOp"
   attr {
     key: "_class"
@@ -5925,14 +6958,14 @@ node {
   attr {
     key: "shared_name"
     value {
-      s: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+      s: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
     }
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/IsInitialized/VarIsInitializedOp"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1/IsInitialized/VarIsInitializedOp"
   op: "VarIsInitializedOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
   attr {
     key: "_class"
     value {
@@ -5952,10 +6985,10 @@ node {
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/Assign"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1/Assign"
   op: "AssignVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/Initializer/zeros"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1/Initializer/zeros"
   attr {
     key: "_class"
     value {
@@ -5972,9 +7005,9 @@ node {
   }
 }
 node {
-  name: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/Read/ReadVariableOp"
+  name: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1/Read/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
   attr {
     key: "_class"
     value {
@@ -6008,12 +7041,15 @@ node {
 node {
   name: "linear/head/Read_1/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/bias_weights/part_0"
+  input: "linear/linear_model/business_year/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
       list {
         shape {
+          dim {
+            size: 1
+          }
           dim {
             size: 1
           }
@@ -6046,6 +7082,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -6059,6 +7098,544 @@ node {
     value {
       list {
         s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+        float_val: 0.10000000149011612
+      }
+    }
+  }
+}
+node {
+  name: "linear/head/linear/linear_model/business_year/weights/part_0/Ftrl/Read/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/head/linear/linear_model/business_year/weights/part_0/Ftrl/Identity"
+  op: "Identity"
+  input: "linear/head/linear/linear_model/business_year/weights/part_0/Ftrl/Read/ReadVariableOp"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  op: "VarHandleOp"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 1
+        }
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl/IsInitialized/VarIsInitializedOp"
+  op: "VarIsInitializedOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl/Assign"
+  op: "AssignVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  input: "linear/head/Const_1"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl/Read/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/head/linear/linear_model/business_year/weights/part_0/Ftrl_1/Read/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/head/linear/linear_model/business_year/weights/part_0/Ftrl_1/Identity"
+  op: "Identity"
+  input: "linear/head/linear/linear_model/business_year/weights/part_0/Ftrl_1/Read/ReadVariableOp"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1/Initializer/zeros"
+  op: "Const"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "value"
+    value {
+      tensor {
+        dtype: DT_FLOAT
+        tensor_shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+        float_val: 0.0
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  op: "VarHandleOp"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+  attr {
+    key: "container"
+    value {
+      s: ""
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "shape"
+    value {
+      shape {
+        dim {
+          size: 1
+        }
+        dim {
+          size: 1
+        }
+      }
+    }
+  }
+  attr {
+    key: "shared_name"
+    value {
+      s: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1/IsInitialized/VarIsInitializedOp"
+  op: "VarIsInitializedOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1/Assign"
+  op: "AssignVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1/Initializer/zeros"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1/Read/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_1/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/head/Read_2/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/bias_weights/part_0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/head/Identity_2"
+  op: "Identity"
+  input: "linear/head/Read_2/ReadVariableOp"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/head/Const_2"
+  op: "Const"
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6103,7 +7680,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6140,7 +7717,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6164,7 +7741,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6214,7 +7791,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6232,12 +7809,12 @@ node {
   name: "linear/linear/linear_model/bias_weights/part_0/Ftrl/Assign"
   op: "AssignVariableOp"
   input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
-  input: "linear/head/Const_1"
+  input: "linear/head/Const_2"
   attr {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6256,7 +7833,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6287,7 +7864,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6324,7 +7901,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6348,7 +7925,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6392,7 +7969,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6442,7 +8019,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6465,7 +8042,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6484,7 +8061,7 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Read_1/ReadVariableOp"
+        s: "loc:@linear/head/Read_2/ReadVariableOp"
       }
     }
   }
@@ -6658,9 +8235,9 @@ node {
   }
 }
 node {
-  name: "linear/head/Ftrl/update_linear/linear_model/BUSINESS_YEAR/weights/part_0/Read/ReadVariableOp"
+  name: "linear/head/Ftrl/update_linear/linear_model/business_month/weights/part_0/Read/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -6684,9 +8261,9 @@ node {
   }
 }
 node {
-  name: "linear/head/Ftrl/update_linear/linear_model/BUSINESS_YEAR/weights/part_0/Identity"
+  name: "linear/head/Ftrl/update_linear/linear_model/business_month/weights/part_0/Identity"
   op: "Identity"
-  input: "linear/head/Ftrl/update_linear/linear_model/BUSINESS_YEAR/weights/part_0/Read/ReadVariableOp"
+  input: "linear/head/Ftrl/update_linear/linear_model/business_month/weights/part_0/Read/ReadVariableOp"
   attr {
     key: "T"
     value {
@@ -6710,12 +8287,12 @@ node {
   }
 }
 node {
-  name: "linear/head/Ftrl/update_linear/linear_model/BUSINESS_YEAR/weights/part_0/ResourceApplyFtrl"
+  name: "linear/head/Ftrl/update_linear/linear_model/business_month/weights/part_0/ResourceApplyFtrl"
   op: "ResourceApplyFtrl"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
-  input: "linear/head/gradients/linear/linear_model_1/linear_model/BUSINESS_YEAR/weighted_sum_grad/tuple/control_dependency_1"
+  input: "linear/linear_model/business_month/weights/part_0"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/business_month/weighted_sum_grad/tuple/control_dependency_1"
   input: "linear/head/Ftrl/learning_rate"
   input: "linear/head/Ftrl/l1_regularization_strength"
   input: "linear/head/Ftrl/l2_regularization_strength"
@@ -6730,7 +8307,91 @@ node {
     key: "_class"
     value {
       list {
-        s: "loc:@linear/head/Ftrl/update_linear/linear_model/BUSINESS_YEAR/weights/part_0/Read/ReadVariableOp"
+        s: "loc:@linear/head/Ftrl/update_linear/linear_model/business_month/weights/part_0/Read/ReadVariableOp"
+      }
+    }
+  }
+  attr {
+    key: "use_locking"
+    value {
+      b: false
+    }
+  }
+}
+node {
+  name: "linear/head/Ftrl/update_linear/linear_model/business_year/weights/part_0/Read/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "linear/head/Ftrl/update_linear/linear_model/business_year/weights/part_0/Identity"
+  op: "Identity"
+  input: "linear/head/Ftrl/update_linear/linear_model/business_year/weights/part_0/Read/ReadVariableOp"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "linear/head/Ftrl/update_linear/linear_model/business_year/weights/part_0/ResourceApplyFtrl"
+  op: "ResourceApplyFtrl"
+  input: "linear/linear_model/business_year/weights/part_0"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  input: "linear/head/gradients/linear/linear_model_1/linear_model/business_year/weighted_sum_grad/tuple/control_dependency_1"
+  input: "linear/head/Ftrl/learning_rate"
+  input: "linear/head/Ftrl/l1_regularization_strength"
+  input: "linear/head/Ftrl/l2_regularization_strength"
+  input: "linear/head/Ftrl/learning_rate_power"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_class"
+    value {
+      list {
+        s: "loc:@linear/head/Ftrl/update_linear/linear_model/business_year/weights/part_0/Read/ReadVariableOp"
       }
     }
   }
@@ -6822,8 +8483,9 @@ node {
 node {
   name: "linear/head/Ftrl/update"
   op: "NoOp"
-  input: "^linear/head/Ftrl/update_linear/linear_model/BUSINESS_YEAR/weights/part_0/ResourceApplyFtrl"
   input: "^linear/head/Ftrl/update_linear/linear_model/bias_weights/part_0/ResourceApplyFtrl"
+  input: "^linear/head/Ftrl/update_linear/linear_model/business_month/weights/part_0/ResourceApplyFtrl"
+  input: "^linear/head/Ftrl/update_linear/linear_model/business_year/weights/part_0/ResourceApplyFtrl"
 }
 node {
   name: "linear/head/Ftrl/value"
@@ -7049,7 +8711,7 @@ node {
   }
 }
 node {
-  name: "linear/head/Const_2"
+  name: "linear/head/Const_3"
   op: "Const"
   attr {
     key: "_output_shapes"
@@ -7088,7 +8750,7 @@ node {
   name: "linear/head/Sum"
   op: "Sum"
   input: "linear/head/mul"
-  input: "linear/head/Const_2"
+  input: "linear/head/Const_3"
   attr {
     key: "T"
     value {
@@ -7244,12 +8906,15 @@ node {
   name: "init"
   op: "NoOp"
   input: "^global_step/Assign"
-  input: "^linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl/Assign"
-  input: "^linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1/Assign"
   input: "^linear/linear/linear_model/bias_weights/part_0/Ftrl/Assign"
   input: "^linear/linear/linear_model/bias_weights/part_0/Ftrl_1/Assign"
-  input: "^linear/linear_model/BUSINESS_YEAR/weights/part_0/Assign"
+  input: "^linear/linear/linear_model/business_month/weights/part_0/Ftrl/Assign"
+  input: "^linear/linear/linear_model/business_month/weights/part_0/Ftrl_1/Assign"
+  input: "^linear/linear/linear_model/business_year/weights/part_0/Ftrl/Assign"
+  input: "^linear/linear/linear_model/business_year/weights/part_0/Ftrl_1/Assign"
   input: "^linear/linear_model/bias_weights/part_0/Assign"
+  input: "^linear/linear_model/business_month/weights/part_0/Assign"
+  input: "^linear/linear_model/business_year/weights/part_0/Assign"
 }
 node {
   name: "init_1"
@@ -7292,7 +8957,7 @@ node {
 node {
   name: "report_uninitialized_variables/VarIsInitializedOp"
   op: "VarIsInitializedOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -7306,7 +8971,7 @@ node {
 node {
   name: "report_uninitialized_variables/VarIsInitializedOp_1"
   op: "VarIsInitializedOp"
-  input: "linear/linear_model/bias_weights/part_0"
+  input: "linear/linear_model/business_year/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -7320,7 +8985,7 @@ node {
 node {
   name: "report_uninitialized_variables/VarIsInitializedOp_2"
   op: "VarIsInitializedOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
+  input: "linear/linear_model/bias_weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -7334,7 +8999,7 @@ node {
 node {
   name: "report_uninitialized_variables/VarIsInitializedOp_3"
   op: "VarIsInitializedOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
   attr {
     key: "_output_shapes"
     value {
@@ -7348,7 +9013,7 @@ node {
 node {
   name: "report_uninitialized_variables/VarIsInitializedOp_4"
   op: "VarIsInitializedOp"
-  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
   attr {
     key: "_output_shapes"
     value {
@@ -7361,6 +9026,48 @@ node {
 }
 node {
   name: "report_uninitialized_variables/VarIsInitializedOp_5"
+  op: "VarIsInitializedOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "report_uninitialized_variables/VarIsInitializedOp_6"
+  op: "VarIsInitializedOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "report_uninitialized_variables/VarIsInitializedOp_7"
+  op: "VarIsInitializedOp"
+  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "report_uninitialized_variables/VarIsInitializedOp_8"
   op: "VarIsInitializedOp"
   input: "linear/linear/linear_model/bias_weights/part_0/Ftrl_1"
   attr {
@@ -7383,11 +9090,14 @@ node {
   input: "report_uninitialized_variables/VarIsInitializedOp_3"
   input: "report_uninitialized_variables/VarIsInitializedOp_4"
   input: "report_uninitialized_variables/VarIsInitializedOp_5"
+  input: "report_uninitialized_variables/VarIsInitializedOp_6"
+  input: "report_uninitialized_variables/VarIsInitializedOp_7"
+  input: "report_uninitialized_variables/VarIsInitializedOp_8"
   device: "/device:CPU:0"
   attr {
     key: "N"
     value {
-      i: 7
+      i: 10
     }
   }
   attr {
@@ -7402,7 +9112,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -7426,7 +9136,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -7443,7 +9153,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -7462,14 +9172,17 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 7
+            size: 10
           }
         }
         string_val: "global_step"
-        string_val: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+        string_val: "linear/linear_model/business_month/weights/part_0"
+        string_val: "linear/linear_model/business_year/weights/part_0"
         string_val: "linear/linear_model/bias_weights/part_0"
-        string_val: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
-        string_val: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+        string_val: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
+        string_val: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
+        string_val: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+        string_val: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
         string_val: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
         string_val: "linear/linear/linear_model/bias_weights/part_0/Ftrl_1"
       }
@@ -7508,7 +9221,7 @@ node {
             size: 1
           }
         }
-        int_val: 7
+        int_val: 10
       }
     }
   }
@@ -7790,7 +9503,7 @@ node {
             size: 1
           }
         }
-        int_val: 7
+        int_val: 10
       }
     }
   }
@@ -8000,7 +9713,7 @@ node {
             size: 1
           }
         }
-        int_val: 7
+        int_val: 10
       }
     }
   }
@@ -8308,7 +10021,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -8376,7 +10089,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -8643,7 +10356,7 @@ node {
 node {
   name: "report_uninitialized_variables_1/VarIsInitializedOp"
   op: "VarIsInitializedOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -8657,7 +10370,7 @@ node {
 node {
   name: "report_uninitialized_variables_1/VarIsInitializedOp_1"
   op: "VarIsInitializedOp"
-  input: "linear/linear_model/bias_weights/part_0"
+  input: "linear/linear_model/business_year/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -8671,7 +10384,7 @@ node {
 node {
   name: "report_uninitialized_variables_1/VarIsInitializedOp_2"
   op: "VarIsInitializedOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
+  input: "linear/linear_model/bias_weights/part_0"
   attr {
     key: "_output_shapes"
     value {
@@ -8685,7 +10398,7 @@ node {
 node {
   name: "report_uninitialized_variables_1/VarIsInitializedOp_3"
   op: "VarIsInitializedOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
   attr {
     key: "_output_shapes"
     value {
@@ -8699,7 +10412,7 @@ node {
 node {
   name: "report_uninitialized_variables_1/VarIsInitializedOp_4"
   op: "VarIsInitializedOp"
-  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
   attr {
     key: "_output_shapes"
     value {
@@ -8712,6 +10425,48 @@ node {
 }
 node {
   name: "report_uninitialized_variables_1/VarIsInitializedOp_5"
+  op: "VarIsInitializedOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "report_uninitialized_variables_1/VarIsInitializedOp_6"
+  op: "VarIsInitializedOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "report_uninitialized_variables_1/VarIsInitializedOp_7"
+  op: "VarIsInitializedOp"
+  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+        }
+      }
+    }
+  }
+}
+node {
+  name: "report_uninitialized_variables_1/VarIsInitializedOp_8"
   op: "VarIsInitializedOp"
   input: "linear/linear/linear_model/bias_weights/part_0/Ftrl_1"
   attr {
@@ -8734,11 +10489,14 @@ node {
   input: "report_uninitialized_variables_1/VarIsInitializedOp_3"
   input: "report_uninitialized_variables_1/VarIsInitializedOp_4"
   input: "report_uninitialized_variables_1/VarIsInitializedOp_5"
+  input: "report_uninitialized_variables_1/VarIsInitializedOp_6"
+  input: "report_uninitialized_variables_1/VarIsInitializedOp_7"
+  input: "report_uninitialized_variables_1/VarIsInitializedOp_8"
   device: "/device:CPU:0"
   attr {
     key: "N"
     value {
-      i: 7
+      i: 10
     }
   }
   attr {
@@ -8753,7 +10511,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -8777,7 +10535,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -8794,7 +10552,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -8813,14 +10571,17 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 7
+            size: 10
           }
         }
         string_val: "global_step"
-        string_val: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+        string_val: "linear/linear_model/business_month/weights/part_0"
+        string_val: "linear/linear_model/business_year/weights/part_0"
         string_val: "linear/linear_model/bias_weights/part_0"
-        string_val: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
-        string_val: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+        string_val: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
+        string_val: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
+        string_val: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+        string_val: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
         string_val: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
         string_val: "linear/linear/linear_model/bias_weights/part_0/Ftrl_1"
       }
@@ -8859,7 +10620,7 @@ node {
             size: 1
           }
         }
-        int_val: 7
+        int_val: 10
       }
     }
   }
@@ -9141,7 +10902,7 @@ node {
             size: 1
           }
         }
-        int_val: 7
+        int_val: 10
       }
     }
   }
@@ -9351,7 +11112,7 @@ node {
             size: 1
           }
         }
-        int_val: 7
+        int_val: 10
       }
     }
   }
@@ -9659,7 +11420,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -9727,7 +11488,7 @@ node {
       list {
         shape {
           dim {
-            size: 7
+            size: 10
           }
         }
       }
@@ -9938,15 +11699,12 @@ node {
 node {
   name: "save/Read/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
+  input: "linear/linear_model/bias_weights/part_0"
   attr {
     key: "_output_shapes"
     value {
       list {
         shape {
-          dim {
-            size: 1
-          }
           dim {
             size: 1
           }
@@ -9979,9 +11737,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -10006,9 +11761,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -10017,15 +11769,12 @@ node {
 node {
   name: "save/Read_1/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
   attr {
     key: "_output_shapes"
     value {
       list {
         shape {
-          dim {
-            size: 1
-          }
           dim {
             size: 1
           }
@@ -10058,9 +11807,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -10085,9 +11831,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -10096,15 +11839,12 @@ node {
 node {
   name: "save/Read_2/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
+  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl_1"
   attr {
     key: "_output_shapes"
     value {
       list {
         shape {
-          dim {
-            size: 1
-          }
           dim {
             size: 1
           }
@@ -10137,9 +11877,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -10164,9 +11901,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -10175,12 +11909,15 @@ node {
 node {
   name: "save/Read_3/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear_model/bias_weights/part_0"
+  input: "linear/linear_model/business_month/weights/part_0"
   attr {
     key: "_output_shapes"
     value {
       list {
         shape {
+          dim {
+            size: 1
+          }
           dim {
             size: 1
           }
@@ -10213,6 +11950,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -10237,6 +11977,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -10245,12 +11988,15 @@ node {
 node {
   name: "save/Read_4/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
   attr {
     key: "_output_shapes"
     value {
       list {
         shape {
+          dim {
+            size: 1
+          }
           dim {
             size: 1
           }
@@ -10283,6 +12029,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -10307,6 +12056,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -10315,12 +12067,15 @@ node {
 node {
   name: "save/Read_5/ReadVariableOp"
   op: "ReadVariableOp"
-  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl_1"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
   attr {
     key: "_output_shapes"
     value {
       list {
         shape {
+          dim {
+            size: 1
+          }
           dim {
             size: 1
           }
@@ -10353,6 +12108,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -10374,6 +12132,246 @@ node {
     value {
       list {
         shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Read_6/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_12"
+  op: "Identity"
+  input: "save/Read_6/ReadVariableOp"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_13"
+  op: "Identity"
+  input: "save/Identity_12"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Read_7/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_14"
+  op: "Identity"
+  input: "save/Read_7/ReadVariableOp"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_15"
+  op: "Identity"
+  input: "save/Identity_14"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Read_8/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_16"
+  op: "Identity"
+  input: "save/Read_8/ReadVariableOp"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_17"
+  op: "Identity"
+  input: "save/Identity_16"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
           dim {
             size: 1
           }
@@ -10407,7 +12405,7 @@ node {
         dtype: DT_STRING
         tensor_shape {
         }
-        string_val: "_temp_2c9e539585e2481ebe57ad896044c43f/part"
+        string_val: "_temp_c27028798f1f4054b3867f1ac6466da8/part"
       }
     }
   }
@@ -10687,249 +12685,6 @@ node {
   }
 }
 node {
-  name: "save/Read_6/ReadVariableOp"
-  op: "ReadVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
-  device: "/device:CPU:0"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "save/Identity_12"
-  op: "Identity"
-  input: "save/Read_6/ReadVariableOp"
-  device: "/device:CPU:0"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "save/Identity_13"
-  op: "Identity"
-  input: "save/Identity_12"
-  device: "/device:CPU:0"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "save/Read_7/ReadVariableOp"
-  op: "ReadVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
-  device: "/device:CPU:0"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "save/Identity_14"
-  op: "Identity"
-  input: "save/Read_7/ReadVariableOp"
-  device: "/device:CPU:0"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "save/Identity_15"
-  op: "Identity"
-  input: "save/Identity_14"
-  device: "/device:CPU:0"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "save/Read_8/ReadVariableOp"
-  op: "ReadVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
-  device: "/device:CPU:0"
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-  attr {
-    key: "dtype"
-    value {
-      type: DT_FLOAT
-    }
-  }
-}
-node {
-  name: "save/Identity_16"
-  op: "Identity"
-  input: "save/Read_8/ReadVariableOp"
-  device: "/device:CPU:0"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-}
-node {
-  name: "save/Identity_17"
-  op: "Identity"
-  input: "save/Identity_16"
-  device: "/device:CPU:0"
-  attr {
-    key: "T"
-    value {
-      type: DT_FLOAT
-    }
-  }
-  attr {
-    key: "_output_shapes"
-    value {
-      list {
-        shape {
-          dim {
-            size: 1
-          }
-          dim {
-            size: 1
-          }
-        }
-      }
-    }
-  }
-}
-node {
   name: "save/Read_9/ReadVariableOp"
   op: "ReadVariableOp"
   input: "linear/linear_model/bias_weights/part_0"
@@ -11146,6 +12901,492 @@ node {
   }
 }
 node {
+  name: "save/Read_12/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_month/weights/part_0"
+  device: "/device:CPU:0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_24"
+  op: "Identity"
+  input: "save/Read_12/ReadVariableOp"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_25"
+  op: "Identity"
+  input: "save/Identity_24"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Read_13/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
+  device: "/device:CPU:0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_26"
+  op: "Identity"
+  input: "save/Read_13/ReadVariableOp"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_27"
+  op: "Identity"
+  input: "save/Identity_26"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Read_14/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
+  device: "/device:CPU:0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_28"
+  op: "Identity"
+  input: "save/Read_14/ReadVariableOp"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_29"
+  op: "Identity"
+  input: "save/Identity_28"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Read_15/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  device: "/device:CPU:0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_30"
+  op: "Identity"
+  input: "save/Read_15/ReadVariableOp"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_31"
+  op: "Identity"
+  input: "save/Identity_30"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Read_16/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  device: "/device:CPU:0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_32"
+  op: "Identity"
+  input: "save/Read_16/ReadVariableOp"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_33"
+  op: "Identity"
+  input: "save/Identity_32"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Read_17/ReadVariableOp"
+  op: "ReadVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  device: "/device:CPU:0"
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_34"
+  op: "Identity"
+  input: "save/Read_17/ReadVariableOp"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/Identity_35"
+  op: "Identity"
+  input: "save/Identity_34"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
   name: "save/SaveV2_1/tensor_names"
   op: "Const"
   device: "/device:CPU:0"
@@ -11155,7 +13396,7 @@ node {
       list {
         shape {
           dim {
-            size: 6
+            size: 9
           }
         }
       }
@@ -11174,15 +13415,18 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 6
+            size: 9
           }
         }
-        string_val: "linear/linear_model/BUSINESS_YEAR/weights"
-        string_val: "linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
-        string_val: "linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
         string_val: "linear/linear_model/bias_weights"
         string_val: "linear/linear_model/bias_weights/part_0/Ftrl"
         string_val: "linear/linear_model/bias_weights/part_0/Ftrl_1"
+        string_val: "linear/linear_model/business_month/weights"
+        string_val: "linear/linear_model/business_month/weights/part_0/Ftrl"
+        string_val: "linear/linear_model/business_month/weights/part_0/Ftrl_1"
+        string_val: "linear/linear_model/business_year/weights"
+        string_val: "linear/linear_model/business_year/weights/part_0/Ftrl"
+        string_val: "linear/linear_model/business_year/weights/part_0/Ftrl_1"
       }
     }
   }
@@ -11197,7 +13441,7 @@ node {
       list {
         shape {
           dim {
-            size: 6
+            size: 9
           }
         }
       }
@@ -11216,15 +13460,18 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 6
+            size: 9
           }
         }
-        string_val: "1 1 0,1:0,1"
-        string_val: "1 1 0,1:0,1"
-        string_val: "1 1 0,1:0,1"
         string_val: "1 0,1"
         string_val: "1 0,1"
         string_val: "1 0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
       }
     }
   }
@@ -11235,17 +13482,23 @@ node {
   input: "save/ShardedFilename_1"
   input: "save/SaveV2_1/tensor_names"
   input: "save/SaveV2_1/shape_and_slices"
-  input: "save/Identity_13"
-  input: "save/Identity_15"
-  input: "save/Identity_17"
   input: "save/Identity_19"
   input: "save/Identity_21"
   input: "save/Identity_23"
+  input: "save/Identity_25"
+  input: "save/Identity_27"
+  input: "save/Identity_29"
+  input: "save/Identity_31"
+  input: "save/Identity_33"
+  input: "save/Identity_35"
   device: "/device:CPU:0"
   attr {
     key: "dtypes"
     value {
       list {
+        type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_FLOAT
         type: DT_FLOAT
         type: DT_FLOAT
         type: DT_FLOAT
@@ -11339,7 +13592,7 @@ node {
   }
 }
 node {
-  name: "save/Identity_24"
+  name: "save/Identity_36"
   op: "Identity"
   input: "save/Const"
   input: "^save/MergeV2Checkpoints"
@@ -11518,7 +13771,7 @@ node {
       list {
         shape {
           dim {
-            size: 6
+            size: 9
           }
         }
       }
@@ -11537,15 +13790,18 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 6
+            size: 9
           }
         }
-        string_val: "linear/linear_model/BUSINESS_YEAR/weights"
-        string_val: "linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
-        string_val: "linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
         string_val: "linear/linear_model/bias_weights"
         string_val: "linear/linear_model/bias_weights/part_0/Ftrl"
         string_val: "linear/linear_model/bias_weights/part_0/Ftrl_1"
+        string_val: "linear/linear_model/business_month/weights"
+        string_val: "linear/linear_model/business_month/weights/part_0/Ftrl"
+        string_val: "linear/linear_model/business_month/weights/part_0/Ftrl_1"
+        string_val: "linear/linear_model/business_year/weights"
+        string_val: "linear/linear_model/business_year/weights/part_0/Ftrl"
+        string_val: "linear/linear_model/business_year/weights/part_0/Ftrl_1"
       }
     }
   }
@@ -11560,7 +13816,7 @@ node {
       list {
         shape {
           dim {
-            size: 6
+            size: 9
           }
         }
       }
@@ -11579,15 +13835,18 @@ node {
         dtype: DT_STRING
         tensor_shape {
           dim {
-            size: 6
+            size: 9
           }
         }
-        string_val: "1 1 0,1:0,1"
-        string_val: "1 1 0,1:0,1"
-        string_val: "1 1 0,1:0,1"
         string_val: "1 0,1"
         string_val: "1 0,1"
         string_val: "1 0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
+        string_val: "1 1 0,1:0,1"
       }
     }
   }
@@ -11607,6 +13866,21 @@ node {
           dim {
             size: 1
           }
+        }
+        shape {
+          dim {
+            size: 1
+          }
+        }
+        shape {
+          dim {
+            size: 1
+          }
+        }
+        shape {
+          dim {
+            size: 1
+          }
           dim {
             size: 1
           }
@@ -11631,13 +13905,22 @@ node {
           dim {
             size: 1
           }
-        }
-        shape {
           dim {
             size: 1
           }
         }
         shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+        shape {
+          dim {
+            size: 1
+          }
           dim {
             size: 1
           }
@@ -11655,12 +13938,15 @@ node {
         type: DT_FLOAT
         type: DT_FLOAT
         type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_FLOAT
+        type: DT_FLOAT
       }
     }
   }
 }
 node {
-  name: "save/Identity_25"
+  name: "save/Identity_37"
   op: "Identity"
   input: "save/RestoreV2_1"
   device: "/device:CPU:0"
@@ -11678,9 +13964,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -11689,8 +13972,8 @@ node {
 node {
   name: "save/AssignVariableOp"
   op: "AssignVariableOp"
-  input: "linear/linear_model/BUSINESS_YEAR/weights/part_0"
-  input: "save/Identity_25"
+  input: "linear/linear_model/bias_weights/part_0"
+  input: "save/Identity_37"
   device: "/device:CPU:0"
   attr {
     key: "dtype"
@@ -11700,7 +13983,7 @@ node {
   }
 }
 node {
-  name: "save/Identity_26"
+  name: "save/Identity_38"
   op: "Identity"
   input: "save/RestoreV2_1:1"
   device: "/device:CPU:0"
@@ -11718,9 +14001,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -11729,8 +14009,8 @@ node {
 node {
   name: "save/AssignVariableOp_1"
   op: "AssignVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl"
-  input: "save/Identity_26"
+  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
+  input: "save/Identity_38"
   device: "/device:CPU:0"
   attr {
     key: "dtype"
@@ -11740,7 +14020,7 @@ node {
   }
 }
 node {
-  name: "save/Identity_27"
+  name: "save/Identity_39"
   op: "Identity"
   input: "save/RestoreV2_1:2"
   device: "/device:CPU:0"
@@ -11758,9 +14038,6 @@ node {
           dim {
             size: 1
           }
-          dim {
-            size: 1
-          }
         }
       }
     }
@@ -11769,8 +14046,8 @@ node {
 node {
   name: "save/AssignVariableOp_2"
   op: "AssignVariableOp"
-  input: "linear/linear/linear_model/BUSINESS_YEAR/weights/part_0/Ftrl_1"
-  input: "save/Identity_27"
+  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl_1"
+  input: "save/Identity_39"
   device: "/device:CPU:0"
   attr {
     key: "dtype"
@@ -11780,7 +14057,7 @@ node {
   }
 }
 node {
-  name: "save/Identity_28"
+  name: "save/Identity_40"
   op: "Identity"
   input: "save/RestoreV2_1:3"
   device: "/device:CPU:0"
@@ -11798,6 +14075,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -11806,8 +14086,8 @@ node {
 node {
   name: "save/AssignVariableOp_3"
   op: "AssignVariableOp"
-  input: "linear/linear_model/bias_weights/part_0"
-  input: "save/Identity_28"
+  input: "linear/linear_model/business_month/weights/part_0"
+  input: "save/Identity_40"
   device: "/device:CPU:0"
   attr {
     key: "dtype"
@@ -11817,7 +14097,7 @@ node {
   }
 }
 node {
-  name: "save/Identity_29"
+  name: "save/Identity_41"
   op: "Identity"
   input: "save/RestoreV2_1:4"
   device: "/device:CPU:0"
@@ -11835,6 +14115,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -11843,8 +14126,8 @@ node {
 node {
   name: "save/AssignVariableOp_4"
   op: "AssignVariableOp"
-  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl"
-  input: "save/Identity_29"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl"
+  input: "save/Identity_41"
   device: "/device:CPU:0"
   attr {
     key: "dtype"
@@ -11854,7 +14137,7 @@ node {
   }
 }
 node {
-  name: "save/Identity_30"
+  name: "save/Identity_42"
   op: "Identity"
   input: "save/RestoreV2_1:5"
   device: "/device:CPU:0"
@@ -11872,6 +14155,9 @@ node {
           dim {
             size: 1
           }
+          dim {
+            size: 1
+          }
         }
       }
     }
@@ -11880,8 +14166,128 @@ node {
 node {
   name: "save/AssignVariableOp_5"
   op: "AssignVariableOp"
-  input: "linear/linear/linear_model/bias_weights/part_0/Ftrl_1"
-  input: "save/Identity_30"
+  input: "linear/linear/linear_model/business_month/weights/part_0/Ftrl_1"
+  input: "save/Identity_42"
+  device: "/device:CPU:0"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_43"
+  op: "Identity"
+  input: "save/RestoreV2_1:6"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/AssignVariableOp_6"
+  op: "AssignVariableOp"
+  input: "linear/linear_model/business_year/weights/part_0"
+  input: "save/Identity_43"
+  device: "/device:CPU:0"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_44"
+  op: "Identity"
+  input: "save/RestoreV2_1:7"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/AssignVariableOp_7"
+  op: "AssignVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl"
+  input: "save/Identity_44"
+  device: "/device:CPU:0"
+  attr {
+    key: "dtype"
+    value {
+      type: DT_FLOAT
+    }
+  }
+}
+node {
+  name: "save/Identity_45"
+  op: "Identity"
+  input: "save/RestoreV2_1:8"
+  device: "/device:CPU:0"
+  attr {
+    key: "T"
+    value {
+      type: DT_FLOAT
+    }
+  }
+  attr {
+    key: "_output_shapes"
+    value {
+      list {
+        shape {
+          dim {
+            size: 1
+          }
+          dim {
+            size: 1
+          }
+        }
+      }
+    }
+  }
+}
+node {
+  name: "save/AssignVariableOp_8"
+  op: "AssignVariableOp"
+  input: "linear/linear/linear_model/business_year/weights/part_0/Ftrl_1"
+  input: "save/Identity_45"
   device: "/device:CPU:0"
   attr {
     key: "dtype"
@@ -11899,6 +14305,9 @@ node {
   input: "^save/AssignVariableOp_3"
   input: "^save/AssignVariableOp_4"
   input: "^save/AssignVariableOp_5"
+  input: "^save/AssignVariableOp_6"
+  input: "^save/AssignVariableOp_7"
+  input: "^save/AssignVariableOp_8"
   device: "/device:CPU:0"
 }
 node {
