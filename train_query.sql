@@ -36,6 +36,7 @@ from (
         sum(int_component) as annual_interest,
         (extract(year from release_date)) as business_year
     from sales_analysis
+    where mod(abs(hash(cast(int_component as varchar(200)))), 10) < 7
     group by business_year
     having sum(int_component) > 0
 ) a 
@@ -45,6 +46,7 @@ join (
         (extract(month from release_date)) as business_month,
         (extract(year from release_date)) as business_year
     from sales_analysis
+    where mod(abs(hash(cast(int_component as varchar(200)))), 10) < 7
     group by business_year, business_month
     having sum(int_component) > 0
 ) m on a.business_year = m.business_year 
