@@ -5,6 +5,7 @@ select
     (extract(year from release_date)) as business_year
 from sales_analysis
 where mod(abs(hash(cast(int_component as varchar(200)))), 10) < 7
+and (extract(year from release_date)) < 2018
 group by business_year
 having sum(int_component) > 0
 
