@@ -2,7 +2,8 @@
 
 select 
     sum(int_component) as annual_interest,
-    (extract(year from release_date)) as business_year
+    (extract(year from release_date)) as business_year,
+    count(extract(year from release_date)) as annual_sales
 from sales_analysis
 where mod(abs(hash(cast(int_component as varchar(200)))), 10) < 7
 and (extract(year from release_date)) < 2018
