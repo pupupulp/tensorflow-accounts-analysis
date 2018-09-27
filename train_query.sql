@@ -17,9 +17,11 @@ having sum(int_component) > 0
 select 
     sum(int_component) as monthly_interest,
     (extract(month from release_date)) as business_month,
-    (extract(year from release_date)) as business_year
+    (extract(year from release_date)) as business_year,
+    count(extract(month from release_date)) as monthly_sales
 from sales_analysis
 where mod(abs(hash(cast(int_component as varchar(200)))), 10) < 7
+and (extract(year from release_date)) < 2018
 group by business_year, business_month
 having sum(int_component) > 0
 
